@@ -25,11 +25,11 @@ npm install jwt-transform -S or yarn add jwt-transform -S
 
 - #### encrypt(text: string, rotate: number): string | Promise
 
-  Encrypt real jwt token using cryptography to fake jwt token
-
+  encrypt real jwt token using caesar cipher cryptography to fake jwt token
+  
 - #### decrypt(text: string, rotate: number): string | Promise
 
-  Decrypt fake jwt token using cryptography to real jwt token
+  decrypt fake jwt token using caesar cipher cryptography to real jwt token
 
 
 ## Example Usage
