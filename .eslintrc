@@ -1,0 +1,43 @@
+{
+	"parserOptions": {
+		"ecmaVersion": 2018,
+		"sourceType": "module"
+	},
+	"parser": "@typescript-eslint/parser",
+	"extends": [
+		"plugin:@typescript-eslint/recommended",
+		"plugin:prettier/recommended",
+		"plugin:jest/recommended",
+		"standard"
+	],
+	"rules": {
+		"prettier/prettier": 0,
+		"no-tabs": 0,
+		"indent": 0,
+		"space-before-function-paren": 0,
+		"@typescript-eslint/no-explicit-any": 0,
+		"@typescript-eslint/no-inferrable-types": 0,
+		"no-prototype-builtins": 0,
+		"quote-props": 0,
+		"no-async-promise-executor": 0,
+		"prefer-const": 0,
+		"camelcase": 0,
+		"@typescript-eslint/no-namespace": 0,
+		"jest/no-done-callback": 0,
+		"eqeqeq": 1,
+		"@typescript-eslint/no-this-alias": 1,
+		"jest/valid-expect-in-promise": 1,
+		"jest/no-conditional-expect": 1,
+		"no-unneeded-ternary": 0,
+		"no-multiple-empty-lines": 0
+	},
+	"env": {
+		"node": true,
+		"jest/globals": true
+	},
+	"settings": {
+		"jest": {
+			"version": 26
+		}
+	}
+}

@@ -1,0 +1,35 @@
+language: node_js
+node_js:
+  - node
+  - 14
+	- 12
+env:
+  global:
+    - COVERALLS_PARALLEL=true
+    - COVERALLS_SERVICE_NAME=travis-pro
+    - COVERALLS_REPO_TOKEN=kHnxgz0L2DtfjatCNAI9DVQcp9rxyXWGK
+    - COVERALLS_GIT_BRANCH=main
+addons:
+  apt:
+    packages:
+      - make
+before_install:
+  - echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
+  - git lfs pull
+branches:
+  only:
+    - main
+git:
+  lfs_skip_smudge: true
+script: make build
+cache:
+  - npm
+  - packages
+dist: xenial
+os:
+  - linux
+jobs:
+  fast_finish: true
+notifications:
+  webhooks: https://coveralls.io/webhook?repo_token=kHnxgz0L2DtfjatCNAI9DVQcp9rxyXWGK
+  email: restuwahyu13@gmail.com

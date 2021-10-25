@@ -1,0 +1,88 @@
+{
+	"name": "jwt-transform",
+	"version": "0.0.1",
+	"description": "transform your real jwt token to fake jwt token",
+	"main": "./dist/index.js",
+	"files": [
+		"/dist/**"
+	],
+	"scripts": {
+		"clean": "rimraf dist",
+		"compiler": "npm run clean && tsc --pretty",
+		"build": "npm run compiler",
+		"test": "jest",
+		"test:coverage": "jest --coverage",
+		"test:watch": "jest --watchAll",
+		"test:coveralls": "jest --coverage && coveralls < coverage/lcov.info",
+		"lint": "eslint src/**/*.ts --fix",
+		"format": "prettier src/**/*.ts --write",
+		"lint:fix": "npm run format && npm run lint"
+	},
+	"author": {
+		"name": "Restu Wahyu Saputra",
+		"email": "restuwahyu13@gmail.com",
+		"url": "https://github.com/restuwahyu13"
+	},
+	"repository": {
+		"url": "https://github.com/restuwahyu13/jwt-transform"
+	},
+	"homepage": "https://github.com/restuwahyu13/jwt-transform#readme",
+	"bugs": {
+		"url": "https://github.com/restuwahyu13/jwt-transform/issues"
+	},
+	"license": "MIT",
+	"engines": {
+		"node": ">=10",
+		"npm": ">=5"
+	},
+	"keywords": [
+		"jwt",
+		"jwt-transform",
+		"security",
+		"encrypt",
+		"decrypt",
+		"encode",
+		"decode",
+		"browser",
+		"mobile",
+		"nodejs",
+		"javascript",
+		"typescript",
+		"cryptography",
+		"node",
+		"algorithm",
+		"crypto",
+		"base64",
+		"hex"
+	],
+	"dependencies": {
+		"is-any-type": "0.0.4"
+	},
+	"devDependencies": {
+		"@types/jest": "^27.0.0",
+		"@types/node": "^16.0.0",
+		"@typescript-eslint/eslint-plugin": "^4.12.0",
+		"@typescript-eslint/parser": "^4.12.0",
+		"coveralls": "^3.1.0",
+		"eslint": "^7.17.0",
+		"eslint-config-prettier": "^8.0.0",
+		"eslint-config-standard": "^16.0.2",
+		"eslint-plugin-import": "^2.22.1",
+		"eslint-plugin-jest": "^24.1.3",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"eslint-plugin-promise": "^5.1.0",
+		"husky": "^7.0.2",
+		"jest": "^26.6.3",
+		"prettier": "^2.2.1",
+		"rimraf": "^3.0.2",
+		"ts-jest": "^26.4.4",
+		"ts-node": "^10.2.0",
+		"typescript": "^4.1.3"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm run lint:fix"
+		}
+	}
+}
