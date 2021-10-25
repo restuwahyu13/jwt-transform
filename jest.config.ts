@@ -5,7 +5,7 @@ const config: Config.InitialOptions = {
 	testEnvironment: 'node',
 	moduleFileExtensions: ['ts', 'js'],
 	testMatch: ['<rootDir>/test/**/*.{test.ts, spec.ts}', '<rootDir>/__test__/**/*.{test.ts, spec.ts}'],
-	collectCoverageFrom: ['src/lib/**/*'],
+	collectCoverageFrom: ['src/**/*'],
 	testPathIgnorePatterns: ['node_modules/', 'dist/', 'esm', 'tsconfig.json', 'coverage/', '.github'],
 	coveragePathIgnorePatterns: ['node_modules/', 'dist/', 'esm/', 'tsconfig.json', 'coverage/', '.github', 'images']
 }
