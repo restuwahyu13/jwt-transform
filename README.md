@@ -23,14 +23,13 @@ npm install jwt-transform -S or yarn add jwt-transform -S
 
 ## API Reference
 
-- #### encrypt(text: string, rotate: number): string | Promise
+- #### encrypt(token: string, rotate: number): string | Promise
 
-  encrypt real jwt token using caesar cipher cryptography to fake jwt token
-  
-- #### decrypt(text: string, rotate: number): string | Promise
+  encrypt jwt token using caesar cipher cryptography from real jwt token into fake jwt token
 
-  decrypt fake jwt token using caesar cipher cryptography to real jwt token
+- #### decrypt(token: string, rotate: number): string | Promise
 
+  decrypt jwt token using caesar cipher cryptography from fake jwt token into real jwt token
 
 ## Example Usage
 
@@ -41,7 +40,7 @@ npm install jwt-transform -S or yarn add jwt-transform -S
 
    const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
 
-   const resultEncrypt = encrypt(accessToken, 15)   
+   const resultEncrypt = encrypt(accessToken, 15)
    console.log(resultEncrypt)
    // fake jwt token
    // tnYwqVrxDxYXJoX1CxXhXcG5rRX6XzeMKRY9.tnYosLXxDxXmByB0CIN3DSzlXxlxqbUiOHX6XzekpV4vGV9aXxlxpLU0XydmCIT2ByB5BSXnuF.HuaZmlGYHBtZZU2FI4uleBtYu36EDz6nYK_psFhhl5r
@@ -59,7 +58,7 @@ npm install jwt-transform -S or yarn add jwt-transform -S
 
    const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
 
-   const resultEncrypt = encrypt(accessToken, 15)   
+   const resultEncrypt = encrypt(accessToken, 15)
    console.log(resultEncrypt)
    // fake jwt token
    // tnYwqVrxDxYXJoX1CxXhXcG5rRX6XzeMKRY9.tnYosLXxDxXmByB0CIN3DSzlXxlxqbUiOHX6XzekpV4vGV9aXxlxpLU0XydmCIT2ByB5BSXnuF.HuaZmlGYHBtZZU2FI4uleBtYu36EDz6nYK_psFhhl5r

@@ -5,30 +5,29 @@
  */
 
 import { assert } from 'is-any-type'
+import { validator } from './utils/validator'
 
 let alphabet: string = 'abcdefghijklmnopqrstuvwxyz'
 let lc: string[] = alphabet.replace(/\s/g, '').toLowerCase().split('')
 let uc: string[] = alphabet.replace(/\s/g, '').toUpperCase().split('')
 
 /**
- * Encrypt real jwt token using caesar cipher cryptography to fake jwt token
+ * encrypt jwt token using caesar cipher cryptography from real jwt token into fake jwt token
  *
- * @param {  String | Array } text
- * @param {  Number | Array } rotate
+ * @param {  String } token
+ * @param {  Number } rotate
  * @return { String | Promise } string | promise
  */
 
-export function encrypt(text: string, rotate: number): string | Promise<Error> {
-	if (!assert.isString(text)) {
-		return Promise.reject(new Error('text must be string format'))
-	} else if (!assert.isNumber(rotate)) {
-		return Promise.reject(new Error('rotate must be number format'))
+export function encrypt(token: string, rotate: number): string | Promise<any> {
+	const isValidator: any = validator(token, rotate, 'encrypt')
+
+	if (assert.isPromise(isValidator as any)) {
+		return isValidator
 	} else {
-		return Array.from(text)
+		return Array.from(token)
 			.map((v: string): string => {
-				if (lc.indexOf(v.toLowerCase()) === -1 || uc.indexOf(v.toUpperCase()) === -1) {
-					return v
-				}
+				if (lc.indexOf(v.toLowerCase()) === -1 || uc.indexOf(v.toUpperCase()) === -1) return v
 
 				const lcEncryptIndex: number = (lc.indexOf(v.toLowerCase()) + rotate) % alphabet.length
 				const lcEncryptedChar: string = lc[lcEncryptIndex]
@@ -43,24 +42,22 @@ export function encrypt(text: string, rotate: number): string | Promise<Error> {
 }
 
 /**
- * Decrypt fake jwt token using caesar cipher cryptography to real jwt token
+ * decrypt jwt token using caesar cipher cryptography from fake jwt token into real jwt token
  *
- * @param {  String | Array } text
- * @param {  Number | Array } rotate
+ * @param {  String } token
+ * @param {  Number } rotate
  * @return { String | Promise } string | promise
  */
 
-export function decrypt(text: string, rotate: number): string | Promise<Error> {
-	if (!assert.isString(text)) {
-		return Promise.reject(new Error('text must be string format'))
-	} else if (!assert.isNumber(rotate)) {
-		return Promise.reject(new Error('rotate must be number format'))
+export function decrypt(token: string, rotate: number): string | Promise<any> {
+	const isValidator: any = validator(token, rotate, 'decrypt')
+
+	if (assert.isPromise(isValidator as any)) {
+		return isValidator
 	} else {
-		return Array.from(text)
+		return Array.from(token)
 			.map((v: string): string => {
-				if (lc.indexOf(v.toLowerCase()) === -1 || uc.indexOf(v.toUpperCase()) === -1) {
-					return v
-				}
+				if (lc.indexOf(v.toLowerCase()) === -1 || uc.indexOf(v.toUpperCase()) === -1) return v
 
 				let lcEncryptIndex: number = (lc.indexOf(v.toLowerCase()) - rotate) % alphabet.length
 				lcEncryptIndex = lcEncryptIndex < 0 ? lcEncryptIndex + alphabet.length : lcEncryptIndex
