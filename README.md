@@ -33,6 +33,8 @@ npm install jwt-transform -S or yarn add jwt-transform -S
 
 ## Example Usage
 
+Follow this **[express tutorial](https://github.com/restuwahyu13/express-rest-api-clean-architecture)** for example usage using express, make this as middleware for transform your fake jwt token to real token, because jwt .verify need real token, if you pass fake token jwt.verify identification your token is not valid and if you not using express, make this as middleware.
+
 - ##### Example Usage Using CommonJs With JavaScript
 
   ```javascript
