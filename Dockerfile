@@ -1,6 +1,6 @@
 ## BUILD STAGE ONE
 
-FROM node:14-alpine as node-dist-storage
+FROM node:14-alpine as jwt-transform
 COPY package*.json \
 	.coveralls.yml \
 	.editorconfig \
@@ -20,8 +20,8 @@ RUN apk add make \
 
 ## BUILD STAGE TWO
 
-FROM node-dist-storage
+FROM jwt-transform
 WORKDIR /usr/src/app
-COPY --from=node-dist-storage ./ /usr/src/app
+COPY --from=jwt-transform ./ /usr/src/app
 RUN make build
 CMD docker images
