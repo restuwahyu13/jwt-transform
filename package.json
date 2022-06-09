@@ -1,6 +1,6 @@
 {
 	"name": "jwt-transform",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "transform your real jwt token into fake jwt token.",
 	"main": "./dist/index.js",
 	"files": [

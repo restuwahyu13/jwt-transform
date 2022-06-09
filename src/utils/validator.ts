@@ -21,20 +21,19 @@ const isValidJwt = (jwtToken: string, category: string): boolean => {
 }
 
 export const validator = (token: string, rotate: number, category: string): boolean | Promise<any> => {
-	let error: any
-	if (assert.isUndefined(token as any)) {
-		error = new Error('token is required')
-		return Promise.reject(error)
-	} else if (assert.isUndefined(rotate as any)) {
-		error = new Error('rotate is required')
-		return Promise.reject(error)
-	} else if (!isValidJwt(token, category)) {
-		error = new Error('token must be jwt format')
-		return Promise.reject(error)
-	} else if (!assert.isNumber(rotate as any)) {
-		error = new Error('rotate must be number format')
-		return Promise.reject(error)
-	} else {
-		return true
+	try {
+		if (assert.isUndefined(token as any)) {
+			throw new Error('token is required')
+		} else if (assert.isUndefined(rotate as any)) {
+			throw new Error('rotate is required')
+		} else if (!isValidJwt(token, category)) {
+			throw new Error('token must be jwt format')
+		} else if (!assert.isNumber(rotate as any)) {
+			throw new Error('rotate must be number format')
+		} else {
+			return true
+		}
+	} catch (e: any) {
+		return Promise.reject(e.message)
 	}
 }

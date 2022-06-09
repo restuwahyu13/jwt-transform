@@ -2,17 +2,12 @@ language: node_js
 node_js:
   - node
   - 14
-	- 12
 env:
   global:
     - COVERALLS_PARALLEL=true
     - COVERALLS_SERVICE_NAME=travis-pro
     - COVERALLS_REPO_TOKEN=bV5KSrOjWkMuVxQfLxpm6wuQ1Ij46hugF
     - COVERALLS_GIT_BRANCH=main
-addons:
-  apt:
-    packages:
-      - make
 before_install:
   - echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
   - git lfs pull
@@ -21,7 +16,7 @@ branches:
     - main
 git:
   lfs_skip_smudge: true
-script: make build
+script: npm run test
 cache:
   - npm
   - packages
