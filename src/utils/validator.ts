@@ -1,5 +1,4 @@
 import { assert } from 'is-any-type'
-import { JWtTransformError } from './error'
 
 const isValidJwt = (jwtToken: string, category: string): boolean => {
 	try {
@@ -24,20 +23,16 @@ const isValidJwt = (jwtToken: string, category: string): boolean => {
 export const validator = (token: string, rotate: number, category: string): boolean | Promise<any> => {
 	let error: any
 	if (assert.isUndefined(token as any)) {
-		error = typeof window != 'undefined' ? new Error('token is required') : new JWtTransformError('token is required')
+		error = new Error('token is required')
 		return Promise.reject(error)
 	} else if (assert.isUndefined(rotate as any)) {
-		error = typeof window != 'undefined' ? new Error('rotate is required') : new JWtTransformError('rotate is required')
+		error = new Error('rotate is required')
 		return Promise.reject(error)
 	} else if (!isValidJwt(token, category)) {
-		error =
-			typeof window != 'undefined' ? new Error('token must be jwt format') : new JWtTransformError('token must be jwt format')
+		error = new Error('token must be jwt format')
 		return Promise.reject(error)
 	} else if (!assert.isNumber(rotate as any)) {
-		error =
-			typeof window != 'undefined'
-				? new Error('rotate must be number format')
-				: new JWtTransformError('rotate must be number format')
+		error = new Error('rotate must be number format')
 		return Promise.reject(error)
 	} else {
 		return true
