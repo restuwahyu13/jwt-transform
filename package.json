@@ -58,7 +58,7 @@
 		"is-any-type": "0.0.4"
 	},
 	"devDependencies": {
-		"@jest/types": "^27.5.1",
+		"@jest/types": "^29.4.1",
 		"@types/jest": "^27.4.1",
 		"@types/node": "^17.0.21",
 		"@typescript-eslint/eslint-plugin": "^4.12.0",
