@@ -25,7 +25,8 @@
 		"jest/no-conditional-expect": 1,
 		"no-unneeded-ternary": 0,
 		"no-multiple-empty-lines": 0,
-		"prefer-promise-reject-errors": 0
+		"prefer-promise-reject-errors": 0,
+		"no-unused-vars": 0
 	},
 	"env": {
 		"node": true,

@@ -6,14 +6,15 @@
 
 ## Table Of Content
 
-- [Installation](#installation)
-- [API Reference](#api-reference)
-   + [encrypt](#encrypttext-string-rotate-number-string--promise)
-   + [decrypt](#decrypttext-string-rotate-number-string--promise)
-- [Example Usage](#example-usage)
-- [Testing](#testing)
-- [Bugs](#bugs)
-- [License](#license)
+- [JWT Transform](#jwt-transform)
+  - [Table Of Content](#table-of-content)
+  - [Installation](#installation)
+  - [API Reference](#api-reference)
+  - [Example Usage](#example-usage)
+  - [Testing](#testing)
+  - [Bugs](#bugs)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Installation
 
@@ -23,11 +24,11 @@ npm install jwt-transform -S or yarn add jwt-transform -S
 
 ## API Reference
 
-- #### encrypt(token: string, rotate: number): string | Promise
+- #### encrypt(secretKey: string, plainText: string, rotate: number): string
 
   encrypt jwt token using caesar cipher cryptography from real jwt token into fake jwt token
 
-- #### decrypt(token: string, rotate: number): string | Promise
+- #### decrypt(secretKey: string, cipherText: string, rotate: number): string
 
   decrypt jwt token using caesar cipher cryptography from fake jwt token into real jwt token
 
@@ -38,17 +39,20 @@ Follow this **[express tutorial](https://github.com/restuwahyu13/express-rest-ap
 - ##### Example Usage Using CommonJs With JavaScript
 
   ```javascript
-   const { encrypt, decrypt } = require('jwt-transform')
+   const { JwtTransform } = require('jwt-transform')
 
+    const secretKey = 'ptLDDOU5ejqqLjlk4CpSNxvwZVxQFRmF'
    const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
 
-   const resultEncrypt = encrypt(accessToken, 15)
+   const resultEncrypt = JwtTransform.transform(secretKey, accessToken, secretKey.length)
    console.log(resultEncrypt)
-   // fake jwt token
-   // tnYwqVrxDxYXJoX1CxXhXcG5rRX6XzeMKRY9.tnYosLXxDxXmByB0CIN3DSzlXxlxqbUiOHX6XzekpV4vGV9aXxlxpLU0XydmCIT2ByB5BSXnuF.HuaZmlGYHBtZZU2FI4uleBtYu36EDz6nYK_psFhhl5r
 
-   const resultDecrypt = decrypt(resultEncrypt, 15)
+   // fake jwt token
+   // kePnhMioUoPOAfO1ToOyOtX5iIO6OqvDBIP9.kePfjCOoUoOdSpS0TZE3UJqcOocohsLzFYO6OqvbgM4mXM9rOocogCL0OpudTZK2SpS5SJOelWvzRJJUA5kpwwRprq4IvYTdbcFBdWLXsL.YlrQdcXPYSkQQL2WZ4lcvSkPl36VUq6ePB_gjWyyc5i
+
+   const resultDecrypt = JwtTransform.untransform(secretKey, resultEncrypt, secretKey.length)
    console.log(resultDecrypt)
+
    // real jwt token
    // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
   ```
@@ -56,17 +60,20 @@ Follow this **[express tutorial](https://github.com/restuwahyu13/express-rest-ap
 - ##### Example Usage Using ESM With JavaScript / TypeScript
 
   ```javascript
-   import { encrypt, decrypt } from 'jwt-transform'
+   import { JwtTransform } from 'jwt-transform'
 
+    const secretKey = 'ptLDDOU5ejqqLjlk4CpSNxvwZVxQFRmF'
    const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
 
-   const resultEncrypt = encrypt(accessToken, 15)
+   const resultEncrypt = JwtTransform.transform(secretKey, accessToken, secretKey.length)
    console.log(resultEncrypt)
-   // fake jwt token
-   // tnYwqVrxDxYXJoX1CxXhXcG5rRX6XzeMKRY9.tnYosLXxDxXmByB0CIN3DSzlXxlxqbUiOHX6XzekpV4vGV9aXxlxpLU0XydmCIT2ByB5BSXnuF.HuaZmlGYHBtZZU2FI4uleBtYu36EDz6nYK_psFhhl5r
 
-   const resultDecrypt = decrypt(resultEncrypt, 15)
+   // fake jwt token
+   // kePnhMioUoPOAfO1ToOyOtX5iIO6OqvDBIP9.kePfjCOoUoOdSpS0TZE3UJqcOocohsLzFYO6OqvbgM4mXM9rOocogCL0OpudTZK2SpS5SJOelWvzRJJUA5kpwwRprq4IvYTdbcFBdWLXsL.YlrQdcXPYSkQQL2WZ4lcvSkPl36VUq6ePB_gjWyyc5i
+
+   const resultDecrypt = JwtTransform.untransform(secretKey, resultEncrypt, secretKey.length)
    console.log(resultDecrypt)
+
    // real jwt token
    // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
   ```
