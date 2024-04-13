@@ -11,6 +11,8 @@
   - [Installation](#installation)
   - [API Reference](#api-reference)
   - [Example Usage](#example-usage)
+    + [transfrom](#transfromsecretkey-string-plaintext-string-rotate-number-string) 
+    + [untransform](#untransformsecretkey-string-ciphertext-string-rotate-number-string)
   - [Testing](#testing)
   - [Bugs](#bugs)
   - [Contributing](#contributing)
@@ -24,11 +26,11 @@ npm install jwt-transform -S or yarn add jwt-transform -S
 
 ## API Reference
 
-- #### encrypt(secretKey: string, plainText: string, rotate: number): string
+- #### transfrom(secretKey: string, plainText: string, rotate: number): string
 
   encrypt jwt token using caesar cipher cryptography from real jwt token into fake jwt token
 
-- #### decrypt(secretKey: string, cipherText: string, rotate: number): string
+- #### untransform(secretKey: string, cipherText: string, rotate: number): string
 
   decrypt jwt token using caesar cipher cryptography from fake jwt token into real jwt token
 
